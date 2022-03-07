@@ -1,0 +1,148 @@
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{relsize}
+\usepackage{listings,lstautogobble}
+\usepackage{xcolor}
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pict2e,picture}
+
+\graphicspath{ {.} }
+\newcommand{\bint}[2]{\mathop{\mathlarger{\int_{#1}^{#2}}}}
+\newcommand{\infint}{\mathop{\mathlarger{\int_{-\infty}^\infty}}}
+\newcommand{\bsum}[2]{\mathlarger{\mathlarger{\sum_{#1}^{#2}}}}
+
+\lstset{keywordstyle=\color{magenta},
+        style=Matlab-editor,
+        language=matlab, 
+        basicstyle=\small,
+        autogobble=true}
+
+\newcommand{\neweq}[2]{
+    #1 = 
+    \begin{pmatrix*}[r]
+        #2
+    \end{pmatrix*}
+}
+    
+\newcommand{\vecp}[1]{
+    \begin{pmatrix*}[r]
+        #1
+    \end{pmatrix*}
+}
+
+\newcommand{\vecb}[1]{
+    \begin{bmatrix*}[r]
+        #1
+    \end{bmatrix*}
+}
+
+\newcommand{\newdet}[1]{
+    \begin{vmatrix}
+        #1
+    \end{vmatrix}
+}
+
+\newcommand{\qtitle}[1]{
+    \Large\textbf{#1}\\
+}
+
+\newcommand{\longeq}[1]{
+    \scalebox{#1}[1]{=}
+}
+
+\newcommand{\sqrtfrac}[2]{
+    \cfrac{#1}{\sqrt{#2}}
+}
+
+
+\newcommand{\pfrac}[2]{
+    \cfrac{\partial\ #1}{\partial\ #2}
+}
+
+\newcommand{\thm}{
+    \vspace{0.5cm}
+    \textit{Theorem}
+}
+
+\newcommand{\vecab}{
+    \vecb{\alpha\\\beta}
+}
+
+\newsavebox\CBox
+\newlength\CLength
+\def\Circled#1{\sbox\CBox{#1}%
+  \ifdim\wd\CBox>\ht\CBox \CLength=\wd\CBox\else\CLength=\ht\CBox\fi
+    \makebox[1.2\CLength]{\makebox(0,1.2\CLength){\put(0,0){\circle{1.2\CLength}}}%
+    \makebox(0,1.2\CLength){\put(-.5\wd\CBox,0){#1}}}}
+
+
+\newcommand{\pt}{
+    p_\theta
+}
+
+\newcommand{\pts}{
+    p_{\theta^*}
+}
+
+\newcommand{\qp}{
+    q_\phi
+}
+
+\newcommand{\argmaxp}[1]{
+    \underset{#1}{argmax}
+}
+
+\newcommand{\argminp}[1]{
+    \underset{#1}{argmin}
+}
+
+\newcommand{\dt}{
+    {\Theta^{(D)}}
+}
+
+\newcommand{\gt}{
+    {\Theta^{(G)}}
+}
+
+\newcommand{\jd}{
+    J^{(D)}
+}
+
+\newcommand{\jg}{
+    J^{(G)}
+}
+
+\newcommand{\ee}{ \mathbb{E} }
+
+\newcommand{\pdata}[1]{
+    P_{data}(#1)
+}
+
+\newcommand{\pmodel}[1]{
+    P_{model}(#1) 
+}
+
+\newcommand{\mhalf}{
+    -\cfrac{1}{2}
+}
+
+\newcommand{\usefigure}[1]{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{#1}
+    \end{figure}
+}
+
+\newcommand{\lossl}{
+    \mathcal{L} }
+
+\newcommand{\norm}[1]{
+    \|#1\|_2
+}
