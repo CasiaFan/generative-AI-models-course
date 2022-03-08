@@ -19,6 +19,23 @@
 \maketitle
 
 \section{Lecture 2-3: Normalizing Flows}
+\textbf{Learning objectives}
+
+\begin{itemize}
+\item Derive and use the probability integral transformation, including the Box-Muller transform
+\item Perform transformations of pdfs under linear mappings
+\item Perform transformations of pdfs under nonlinear mappings
+\item Describe alternatives to the probability integral transformation for generating samples, e.g. rejection sampling and MCMC methods
+\item Discuss the unseen elements problem, Laplacian smoothing, and the Good-Turing estimator
+\item Mention the main idea of normalizing flows
+\item Discuss relationships between generators and density estimators in context of implicit/explicit representations.
+\item Use techniques of transforming pdfs under nonlinear mappings to derive the main equations of normalizing flows
+\item Use LOTUS property in context of normalizing flows
+\item Describe evolution of densities in infinitesimal flows and in discrete flows
+\item Draw and describe the GLOW architecture
+\item Specify applications of normalizing flows, e.g. for generating datasets or finding Bayes optimal limits
+\end{itemize}
+
 \subsection{Generating a random variable with specified distribution}
 
 \begin{itemize}
@@ -170,6 +187,23 @@ Easy to get Jacobian where $det(\pfrac{H_k}{H_{k-1}})$ is lower triangular. $log
 
 
 \section{Lecture 4-6: Autoencoder}
+\textbf{Learning objectives}:
+\begin{itemize}
+    \item Discuss the basic formulations and structures of autoencoders for applications in dimensionality reduction
+    \item Mathematically describe why undercompleteness, contraction, and denoising might be useful ways of
+    \item ucturing latent spaces
+    \item Specify the deep latent variable model in the language of graphical models
+    \item Describe how graphical models can be parameterized using neural networks
+    \item Introduce the variational formulation of deep latent variable models 
+    \item Derive ELBO (variational lower bound)
+    \item Discuss how KL divergence term in ELBO determines two “distances”
+    \item Derive reparameterization trick
+    \item State and manipulate the InfoVAE objective
+    \item Discuss some of the shortcomings of the basic ELBO-based VAE formulation
+    \item Develop the basics of quantization theory
+    \item Describe the VQ-VAE approach
+\end{itemize}
+
 An autoencoder is a neural network trained to attempt to copy its input to its output. Internally, it has hidden layer $h$ that describes a code or latent space used to represent the input. 
 
 $\underset{input}{\Circled{X}}\underset{encoder}{\overset{f}{\longrightarrow}}\underset{code}{\Circled{H}}\underset{decoder}{\overset{g}{\longrightarrow}}\underset{reconstruction}{\Circled{R}}$
@@ -256,6 +290,8 @@ Optimize variance parameters $\phi$ such that $q_\phi=p_\theta(Z|x)$
 Encoder has a directed graphical model, can be factorized:\\
 $q_\phi=q_\phi(Z_1, ..., Z_n|x)=\prod^M_{i=1} q_\phi(Z_i|P_a(Z_i),x)$ where $P_a(Z_i)$ is set of parent of $Z_i$ in directed graph. \\
 Once we have factorization $q_\phi(Z|x)$ can be parameterized using NN where $\phi$ is weights, bias of NN. 
+
+\usefigure{fig/vae_arch.jpg}
 
 \vspace{0.5cm}
 The optimization objective of VAE is evidence lower bound (ELBO). For any choice of $\qp(Z|x)$ including choice of $\phi$\\
@@ -400,6 +436,23 @@ $L=\underset{reconstruction\ loss}{\|x-D(e_k)\|^2_2} + \underset{VQ\ loss}{\|sg[
 Let piece is learn a prior in latent space $P(Z)$, so we can sample from it to do generalization via decoders. 
 
 \section{Lecture 7-9: generative adversarial networks (GANs)}
+\textbf{Learning objectives}:
+
+\begin{itemize}
+\item Explain the basic game-theoretic formulation of GANs
+\item Define a normal form game
+\item Describe the standard cost functions for generators and discriminators in GANs
+\item Describe the cost functions for generators and discriminators in GANs that lead to MLE
+\item Derive cost functions for generators and discriminators in GANs that lead to MLE
+\item Discuss stochastic gradient descent algorithms for GANs
+\item Describe the mode collapse and partial mode collapse phenomena and several ways to mitigate it
+\item Describe the basic formulation of Wasserstein GANs
+\item Derive the Kantorovich-Rubinstein duality in optimal transport theory
+\item Discuss f-GANs
+\item Describe GANs in the robust statistics framework
+\item Discuss novelty-quality tradeoffs in creativity
+\item Discuss ways that have been proposed to assess the performance of generative algorithms, especially GANs which only have implicit density estimation, and how this is related to interpolative and extrapolative generation
+\end{itemize}
 
 One weakness of VAE is the variational bounds has a gap such that the model will not be consistent. GAN approach differently circumvents needs for variational bound $\Rightarrow$ NN models within GAN are universal approximators, and this enables a proof of asymptotic consistency in getting true objective distributions.
 
@@ -622,6 +675,17 @@ $\lossl(P_{g(Z)},P_x)$ to be small. If $\lossl$ and $\mathcal{Y}$ don't get righ
 How to have $P_x$ to be a slight perturbation of $g\in \mathcal{Y}$ under $\lossl$ that make sense?
 
 \section{Lecture 10-11: Auto regressive model}
+\textbf{Learning objectives}:
+
+\begin{itemize}
+\item Walk through Markov approximations of language
+\item Discuss generative grammar formulations of language and their contrast with Markov models
+\item Draw out autoregressive models parameterized by neural networks, including those with causal convolution layers
+\item Discuss MLE for autoregressive models
+\item Derive the innovations form of random processes that meet the Paley-Wiener conditions and interpret in terms of convolutions
+\item Show the relationship between minimum mean-squared estimation and maximum entropy extrapolation
+\item Further discuss neural network-based autoregressive models
+\end{itemize}
 
 $P(x,y)=P(x|y)P(y)=P(y|x)P(x)$, $P(x)=\sum_yP(x,y)$ 
 
@@ -733,6 +797,17 @@ max\ lnP(D) &= ln\prod_nP(x_n)\\
 \end{equation*}
 
 \section{Lecture 12-13: Transformers}
+\textbf{Learning objectives}: 
+\begin{itemize}
+    \item Describe the basic approach of language modeling, the idea of self-supervision, and the cloze task
+    \item Describe resource requirements and technologies behind large-scale language models
+    \item Detail the attention mechanism in sequence-to-sequence models
+    \item Detail the attention mechanism in language models
+    \item Discuss the possibility of Transformers as universal computation engines
+    \item Prove the universal approximation theorem for Transformers
+    \item Use the allometric scaling framework
+    \item Discuss scaling laws for Transformers
+\end{itemize}
 
 Language model:
 
@@ -790,5 +865,47 @@ tandem, but enters a regime of diminishing returns if either N or D is held fixe
 \textbf{Sample efficiency} : Large models are more sample efficient than small models, reaching the same level of performance with fewer optimization steps and using fewer data points.
 
 \textbf{Convergence is inefficient} : When working within a fixed compute budget C but without any other restrictions on the model size N or available data D, we attain optimal performance by training very large models and stopping significantly short of convergence. Maximally compute efficient training would therefore be far more sample efficient than one might expect based on training small models to convergence, with data requirements growing very slowly as $D\sim C^{0.27}$ with training compute.
+
+
+\section{Lecture 14. Neural text decoding and prompt programming}
+
+\textbf{Learning objectives}
+
+$\longrightarrow$ \fbox{Prompt programming} $\longrightarrow$ \fbox{Generative AI models} $\longrightarrow$ \fbox{Neural decoding} $\longrightarrow$
+
+\vspace{0.5cm}
+\underline{Theory of mind}:\\
+1. Understanding of your creative partners\\  
+2. recent experiments show "theory of mind" abilities improve human-AI creativity.
+
+\vspace{0.5cm}
+Formulism for prompt programming / prompt engineering.\\
+Reynolds \& McDonrel (ACM CHI, 2021)
+
+Prompting using natural human language (principles):\\
+1. direct specification \\
+2. examples \\
+3. memetic proxy \\
+4. constraining behavior \\
+5. closed-ended questions \\
+6. metaprompt programming 
+
+Backpropagating through large language model to find the prompt that yields it. 
+
+\vspace{0.5cm}
+\underline{Neural decoding}:\\
+Language model gives posterior probability for next token (trained on "predict next token" task). 
+
+e.g. "This sentence will end \_?". How?
+
+1. sample from posterior\\
+2. forward-backward (beam search)\\
+3. grammar-based principle\\
+4. mode \\
+5. moment of the induced next posterior (from top-k) [Basu et.al 2021], mirostat control perplexity, surprise\\
+6. sample from top-k\\
+7. (prompt programming)\\
+8. top-p sampling (nucleus sampling) $\rightarrow$ other moment-based techniques
+
 
 \end{document}
